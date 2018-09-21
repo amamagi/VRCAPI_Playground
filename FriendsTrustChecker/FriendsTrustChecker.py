@@ -16,15 +16,9 @@ def check_trust(response):
     elif "system_trust_known" in response["tags"]:
         print("{} [Known]".format(target))
     elif "system_trust_intermediate" in response["tags"]:
-<<<<<<< HEAD
         print("{} [Intermediate]".format(target))
     elif "system_trust_basic" in response["tags"]:
         print("{} [Basic]".format(target))
-=======
-        print("{} [intermediate]".format(target))
-    elif "system_trust_basic" in response["tags"]:
-        print("{} [basic]".format(target))
->>>>>>> 3cda007c1bc806a2806df02e8b63db92bb7920d4
     else:
         print("{} [不明]".format(target))
 
