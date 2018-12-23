@@ -9,18 +9,6 @@ def check_trust(response):
     target = response["username"]
     if "system_trust_legend" in response["tags"]:
         print("{} [Legend]".format(target))
-    elif "system_trust_veteran" in response["tags"]:
-        print("{} [Veteran]".format(target))
-    elif "system_trust_trusted" in response["tags"]:
-        print("{} [Trusted]".format(target))
-    elif "system_trust_known" in response["tags"]:
-        print("{} [Known]".format(target))
-    elif "system_trust_intermediate" in response["tags"]:
-        print("{} [Intermediate]".format(target))
-    elif "system_trust_basic" in response["tags"]:
-        print("{} [Basic]".format(target))
-    else:
-        print("{} [不明]".format(target))
 
 def get_response(endpoint,data, username, password, params={}):
     try:
