@@ -8,3 +8,6 @@
 
 ## FriendsTrustChecker
 フレンドのトラスト値を一覧表示するスクリプト。
+
+## NightWorksDetector
+Just某の人数が増えるとIFTTTに通知するスクリプト。
