@@ -37,19 +37,25 @@ previousPrivateOccupants = response.json()["privateOccupants"]
 
 # Init IFTTT
 ifttt_url = "https://maker.ifttt.com/trigger/{}/with/key/{}".format(event, key)
-params = {"value1" : ""} # Current Private Occupants
+params = {"value1" : ""}
 
-
+# TImer
 base_time = time.time()
 next_time = 0
 interval = 60
 
 # execute every minute until 2018/12/25 12:00
 while int(datetime.now().strftime("%Y%m%d%H")) < 2018122512: 
-    response = requests.get(url, params={"apiKey": apiKey, "authToken": token})
+    print("{} [GET]VRC".format(datetime.now()))
+    try:
+        response = requests.get(url, params={"apiKey": apiKey, "authToken": token})
+        print("privateOccupants:{}".format(response.json()["privateOccupants"]))
+        print(response)
+    except Exception as e:
+        print(e)
+        
     currentPrivateOccupants = response.json()["privateOccupants"]
     diff = currentPrivateOccupants - previousPrivateOccupants
-    print(currentPrivateOccupants)
     
     if(diff < 0):
         previousPrivateOccupants = currentPrivateOccupants
@@ -57,8 +63,14 @@ while int(datetime.now().strftime("%Y%m%d%H")) < 2018122512:
     elif(diff > 1):
         previousPrivateOccupants = currentPrivateOccupants
         params["value1"] = currentPrivateOccupants
-        response = requests.post(ifttt_url, params=params)
-        print(response)
+        
+        
+        print("[POST]IFTTT".format(datetime.now()))
+        try:
+            response = requests.post(ifttt_url, params=params)
+            print(response)
+        except Exception as e:
+            print(e)
     
     next_time = ((base_time - time.time()) % interval) or interval
     time.sleep(next_time)
