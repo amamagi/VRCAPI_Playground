@@ -64,8 +64,7 @@ while int(datetime.now().strftime("%Y%m%d%H")) < 2018122512:
         previousPrivateOccupants = currentPrivateOccupants
         params["value1"] = currentPrivateOccupants
         
-        
-        print("[POST]IFTTT".format(datetime.now()))
+        print("{} [POST]IFTTT".format(datetime.now()))
         try:
             response = requests.post(ifttt_url, params=params)
             print(response)
